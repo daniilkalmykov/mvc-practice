@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Sources.Scripts.Runtime.Models.Services.InputService
 {
     internal sealed class PCInput : IInputService
     {
+        public event Action OnShootButtonClicked;
+        
         public float MouseX { get; private set; }
         public float MouseY { get; private set; }
 
@@ -13,6 +16,9 @@ namespace Sources.Scripts.Runtime.Models.Services.InputService
         {
             MouseX = Input.GetAxis(InputServiceConstants.MouseX);
             MouseY = Input.GetAxis(InputServiceConstants.MouseY);
+
+            if (Input.GetMouseButtonDown(0))
+                OnShootButtonClicked?.Invoke();
         }
     }
 }
