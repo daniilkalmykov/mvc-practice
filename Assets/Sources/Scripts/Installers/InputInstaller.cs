@@ -16,6 +16,8 @@ namespace Sources.Scripts.Installers
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             _inputService = new PCInput();
+
+            containerBuilder.AddSingleton(_inputService, typeof(IInputService));
         }
     }
 }
