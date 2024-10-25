@@ -6,13 +6,13 @@ namespace Sources.Scripts.Models.Services.InputService
 {
     internal sealed class PCInput : IInputService
     {
-        public float Horizontal { get; private set; }
-        public float Vertical { get; private set; }
-        
+        public float MouseX { get; private set; }
+        public float MouseY { get; private set; }
+
         public void OnUpdated()
         {
-            Horizontal = Input.GetAxis(InputServiceConstants.Horizontal);
-            Vertical = Input.GetAxis(InputServiceConstants.Vertical);
+            MouseX = Input.GetAxis(InputServiceConstants.MouseX);
+            MouseY = Input.GetAxis(InputServiceConstants.MouseY);
         }
     }
 }
