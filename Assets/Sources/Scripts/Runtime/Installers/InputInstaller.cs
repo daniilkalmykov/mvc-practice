@@ -1,8 +1,8 @@
 using Reflex.Core;
-using Sources.Scripts.Models.Services.InputService;
+using Sources.Scripts.Runtime.Models.Services.InputService;
 using UnityEngine;
 
-namespace Sources.Scripts.Installers
+namespace Sources.Scripts.Runtime.Installers
 {
     internal sealed class InputInstaller : MonoBehaviour, IInstaller
     {

@@ -1,4 +1,4 @@
-namespace Sources.Scripts.Models.Services.InputService
+namespace Sources.Scripts.Runtime.Models.Services.InputService
 {
     internal static class InputServiceConstants
     {
