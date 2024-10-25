@@ -1,0 +1,4 @@
+{
+  "name": "Game.Controllers.CameraControllers",
+  "references":[ "GUID:a48b8ca8c23143d0ae484cfb1f07d80d", "GUID:3b7cbb007bfc4310863f1300465ae4d8" ]
+}

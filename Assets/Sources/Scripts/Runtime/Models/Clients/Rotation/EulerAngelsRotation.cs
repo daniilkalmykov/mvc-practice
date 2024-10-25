@@ -13,7 +13,7 @@ namespace Sources.Scripts.Runtime.Models.Clients.Rotation
             _speed = speed;
         }
 
-        public void Rotation(Vector3 direction)
+        public void Rotate(Vector3 direction)
         {
             _transform.localRotation = Quaternion.Euler(direction * _speed);
         }
