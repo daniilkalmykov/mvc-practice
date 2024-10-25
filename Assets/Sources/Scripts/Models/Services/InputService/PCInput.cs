@@ -11,8 +11,8 @@ namespace Sources.Scripts.Models.Services.InputService
         
         public void OnUpdated()
         {
-            Horizontal = Input.GetAxis("Horizontal");
-            Vertical = Input.GetAxis("Vertical");
+            Horizontal = Input.GetAxis(InputServiceConstants.Horizontal);
+            Vertical = Input.GetAxis(InputServiceConstants.Vertical);
         }
     }
 }
