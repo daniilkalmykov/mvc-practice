@@ -1,19 +1,28 @@
+using System.Runtime.CompilerServices;
+using Sources.Scripts.Runtime.Models.Clients.Detectables;
+using Sources.Scripts.Runtime.Models.Clients.Health;
 using Sources.Scripts.Runtime.Models.Clients.Shooting.Weapons;
 
+[assembly: InternalsVisibleTo("Assembly-CSharp")]
 namespace Sources.Scripts.Runtime.Controllers.WeaponControllers
 {
-    public abstract class WeaponController
+    internal sealed class WeaponController : IWeaponController
     {
-        protected WeaponController(Weapon weapon)
-        {
-            Weapon = weapon;
-        }
+        private readonly Weapon _weapon;
 
-        protected Weapon Weapon { get; }
+        public WeaponController(Weapon weapon)
+        {
+            _weapon = weapon;
+        }
 
         public void OnUpdated()
         {
-            Weapon?.OnUpdated();
+            _weapon.OnUpdated();
+        }
+
+        public void Shoot(Detectable<IDamageable> detectable)
+        {
+            _weapon.Shoot(detectable);
         }
     }
 }

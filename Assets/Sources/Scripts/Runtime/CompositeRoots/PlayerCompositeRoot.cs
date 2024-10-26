@@ -1,7 +1,10 @@
 using Reflex.Attributes;
 using Sources.Scripts.Runtime.Controllers.WeaponControllers;
+using Sources.Scripts.Runtime.Models.Clients.Detectables;
 using Sources.Scripts.Runtime.Models.Clients.Factories.FactoryMethods;
 using Sources.Scripts.Runtime.Models.Clients.Factories.FactoryMethods.BulletsFactoryMethods;
+using Sources.Scripts.Runtime.Models.Clients.Health;
+using Sources.Scripts.Runtime.Models.Clients.Raycasting;
 using Sources.Scripts.Runtime.Models.Clients.Shooting.Bullets;
 using Sources.Scripts.Runtime.Models.Clients.Shooting.Weapons;
 using Sources.Scripts.Runtime.Models.Services.InputService;
@@ -15,7 +18,17 @@ namespace Sources.Scripts.Runtime.CompositeRoots
         [SerializeField] private Vector3 _position;
         
         private IInputService _inputService;
-        private WeaponController _weaponController;
+        private IWeaponController _weaponController;
+
+        private void OnEnable()
+        {
+            _inputService.ShootButtonClicked += OnShootButtonClicked;
+        }
+
+        private void OnDisable()
+        {
+            _inputService.ShootButtonClicked -= OnShootButtonClicked;
+        }
 
         private void Update()
         {
@@ -34,7 +47,20 @@ namespace Sources.Scripts.Runtime.CompositeRoots
 
             Weapon weapon = new Pistol(10, 1, factoryMethod.Create());
 
-            _weaponController = new PlayerWeaponController(weapon, _inputService, Camera.main);
+            _weaponController = new WeaponController(weapon);
+        }
+
+        private void OnShootButtonClicked()
+        {
+            var screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f);
+
+            if (Camera.main == null) 
+                return;
+            
+            var ray = Camera.main.ScreenPointToRay(screenCenter);
+
+            if (Raycaster<Detectable<IDamageable>>.Raycast(ray, out var detectable))
+                _weaponController.Shoot(detectable);
         }
     }
 }
