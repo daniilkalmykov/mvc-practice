@@ -4,6 +4,6 @@ namespace Sources.Scripts.Runtime.Models.Clients.Health
     {
         int Health { get; }
 
-        void TryGetDamage(int damage);
+        void GetDamage(int damage);
     }
 }

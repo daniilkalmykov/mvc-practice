@@ -1,0 +1,19 @@
+{
+    "name": "Game.Models.Clients.Shooting",
+    "rootNamespace": "",
+    "references": [
+        "GUID:201fe7c679f44167a75a2eef12ae16ab",
+        "GUID:029c1c1b674aaae47a6841a0b89ad80e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:923b751de53f48ff8e2e1e4053c4a247"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

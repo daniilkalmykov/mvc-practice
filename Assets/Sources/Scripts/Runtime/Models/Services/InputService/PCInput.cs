@@ -7,7 +7,7 @@ namespace Sources.Scripts.Runtime.Models.Services.InputService
 {
     internal sealed class PCInput : IInputService
     {
-        public event Action OnShootButtonClicked;
+        public event Action ShootButtonClicked;
         
         public float MouseX { get; private set; }
         public float MouseY { get; private set; }
@@ -18,7 +18,7 @@ namespace Sources.Scripts.Runtime.Models.Services.InputService
             MouseY = Input.GetAxis(InputServiceConstants.MouseY);
 
             if (Input.GetMouseButtonDown(0))
-                OnShootButtonClicked?.Invoke();
+                ShootButtonClicked?.Invoke();
         }
     }
 }

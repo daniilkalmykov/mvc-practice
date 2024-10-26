@@ -1,0 +1,4 @@
+{
+  "name": "Game.Controllers.WeaponControllers",
+  "references":[ "GUID:0817bc0f686f4a168dd5079c2072b503", "GUID:c6abbc07d58843bfb5c3e3fedb992753", "GUID:a48b8ca8c23143d0ae484cfb1f07d80d", "GUID:53fcafb1fe1748d682be7aa4efc63fe2", "GUID:923b751de53f48ff8e2e1e4053c4a247", "GUID:201fe7c679f44167a75a2eef12ae16ab" ]
+}

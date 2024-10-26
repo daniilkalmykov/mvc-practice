@@ -3,15 +3,21 @@ using UnityEngine;
 
 namespace Sources.Scripts.Runtime.Models.Clients.Raycasting
 {
-    public static class Raycaster<T>  where T : MonoBehaviour
+    public static class Raycaster<T> where T : MonoBehaviour
     {
-        [CanBeNull]
-        public static T RaycastByComponent(Vector3 origin, Vector3 target)
+        public static bool Raycast(Ray ray, out T t)
         {
-            if (Physics.Raycast(origin, target, out var hit) == false)
-                return null;
+            t = null;
 
-            return hit.transform.TryGetComponent(out T t) ? t : null;
+            if (Physics.Raycast(ray, out var hit) == false)
+                return false;
+
+            if (hit.transform.TryGetComponent(out T component) == false)
+                return false;
+
+            t = component;
+
+            return true;
         }
     }
 }

@@ -1,0 +1,16 @@
+{
+    "name": "Game.Models.Clients.Factories",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0817bc0f686f4a168dd5079c2072b503"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
