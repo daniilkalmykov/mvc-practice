@@ -18,11 +18,11 @@ namespace Sources.Scripts.Runtime.Models.Clients.Factories.FactoryMethods.Bullet
             _prefab = prefab;
         }
 
-        public IBullet Create()
+        public Bullet Create()
         {
             var gameObject = Object.Instantiate(_prefab, _position, Quaternion.identity, _parent);
 
-            return gameObject.TryGetComponent(out IBullet bullet) ? bullet : null;
+            return gameObject.TryGetComponent(out Bullet bullet) ? bullet : null;
         }
     }
 }

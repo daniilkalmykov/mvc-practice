@@ -14,11 +14,12 @@ namespace Sources.Scripts.Runtime.CompositeRoots
 {
     internal sealed class PlayerCompositeRoot : CompositeRoot
     {
-        [SerializeField] private Bullet _bullet;
+        [SerializeField] private DefaultBullet _defaultBullet;
         [SerializeField] private Vector3 _position;
-        
+
         private IInputService _inputService;
         private IWeaponController _weaponController;
+        private Bullet _instantiatedBullet;
 
         private void OnEnable()
         {
@@ -40,12 +41,13 @@ namespace Sources.Scripts.Runtime.CompositeRoots
         {
             _inputService = inputService;
         }
-        
+
         public override void Compose()
         {
-            IFactoryMethod<IBullet> factoryMethod = new BulletFactoryMethod(_position, null, _bullet.gameObject);
+            IFactoryMethod<Bullet> factoryMethod = new BulletFactoryMethod(_position, null, _defaultBullet.gameObject);
 
-            Weapon weapon = new Pistol(10, 1, factoryMethod.Create());
+            _instantiatedBullet = factoryMethod.Create();
+            Weapon weapon = new Pistol(10, 1, _instantiatedBullet);
 
             _weaponController = new WeaponController(weapon);
         }
@@ -54,13 +56,18 @@ namespace Sources.Scripts.Runtime.CompositeRoots
         {
             var screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f);
 
-            if (Camera.main == null) 
+            if (Camera.main == null)
                 return;
-            
+
             var ray = Camera.main.ScreenPointToRay(screenCenter);
 
-            if (Raycaster<Detectable<IDamageable>>.Raycast(ray, out var detectable))
-                _weaponController.Shoot(detectable);
+            if (Raycaster<Detectable<IDamageable>>.Raycast(ray, out var detectable) == false)
+                return;
+
+            _instantiatedBullet.transform.localPosition = _position;
+            
+            _instantiatedBullet.gameObject.SetActive(true);
+            _weaponController.Shoot(detectable);
         }
     }
 }

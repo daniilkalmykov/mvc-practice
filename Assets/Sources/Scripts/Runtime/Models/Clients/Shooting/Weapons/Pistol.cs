@@ -8,9 +8,9 @@ namespace Sources.Scripts.Runtime.Models.Clients.Shooting.Weapons
 {
     internal sealed class Pistol : Weapon
     {
-        private readonly IBullet _bullet;
+        private readonly Bullet _bullet;
 
-        public Pistol(int damage, float delay, IBullet bullet) : base(damage, delay)
+        public Pistol(int damage, float delay, Bullet bullet) : base(damage, delay)
         {
             _bullet = bullet;
         }
@@ -22,6 +22,7 @@ namespace Sources.Scripts.Runtime.Models.Clients.Shooting.Weapons
 
             await _bullet.Fly(target);
 
+            _bullet.gameObject.SetActive(false);
             detectable.Value.GetDamage(Damage);
         }
     }

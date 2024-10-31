@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1991883ce8f4c068ee51f14dbccd215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 1417458822}
+  _defaultBullet: {fileID: 1417458822}
   _position: {x: 0, y: 0, z: 0}
 --- !u!1 &1417458817
 GameObject:
