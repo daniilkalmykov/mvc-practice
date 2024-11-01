@@ -20,6 +20,11 @@ namespace Sources.Scripts.Runtime.Controllers.WeaponControllers
             _weapon.OnUpdated();
         }
 
+        public bool CanShoot()
+        {
+            return _weapon.CanShoot();
+        }
+        
         public void Shoot(Detectable<IDamageable> detectable)
         {
             _weapon.Shoot(detectable);

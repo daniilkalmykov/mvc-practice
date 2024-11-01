@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6c41e8781b466db47fb1a57c4e5366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToFly: 1
+  _timeToFly: 0.5
 --- !u!1 &1486472146
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraConfig: {fileID: 11400000, guid: 18bf3dbf29d1d49a6a187898ebb96425, type: 2}
+  _pistolConfig: {fileID: 11400000, guid: 82cd8872c53904fd799e69ee4bf98f33, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

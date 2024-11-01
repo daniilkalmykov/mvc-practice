@@ -23,11 +23,13 @@ namespace Sources.Scripts.Runtime.Models.Clients.Shooting.Weapons
             _currentDelay += Time.deltaTime;
         }
 
+        public bool CanShoot()
+        {
+            return _currentDelay > _delay;
+        }
+        
         public void Shoot(Detectable<IDamageable> detectable)
         {
-            if (_currentDelay < _delay)
-                return;
-
             _currentDelay = 0;
 
             Hit(detectable);

@@ -1,4 +1,5 @@
 using Reflex.Attributes;
+using Sources.Scripts.Editor.Configs.WeaponConfigs;
 using Sources.Scripts.Runtime.Controllers.WeaponControllers;
 using Sources.Scripts.Runtime.Models.Clients.Detectables;
 using Sources.Scripts.Runtime.Models.Clients.Factories.FactoryMethods;
@@ -14,12 +15,13 @@ namespace Sources.Scripts.Runtime.CompositeRoots
 {
     internal sealed class PlayerCompositeRoot : CompositeRoot
     {
-        [SerializeField] private DefaultBullet _defaultBullet;
+        [SerializeField] private Bullet _defaultBullet;
         [SerializeField] private Vector3 _position;
 
         private IInputService _inputService;
         private IWeaponController _weaponController;
         private Bullet _instantiatedBullet;
+        private IWeaponConfig _weaponConfig;
 
         private void OnEnable()
         {
@@ -37,9 +39,10 @@ namespace Sources.Scripts.Runtime.CompositeRoots
         }
 
         [Inject]
-        public void Construct(IInputService inputService)
+        public void Construct(IInputService inputService, IWeaponConfig weaponConfig)
         {
             _inputService = inputService;
+            _weaponConfig = weaponConfig;
         }
 
         public override void Compose()
@@ -47,7 +50,7 @@ namespace Sources.Scripts.Runtime.CompositeRoots
             IFactoryMethod<Bullet> factoryMethod = new BulletFactoryMethod(_position, null, _defaultBullet.gameObject);
 
             _instantiatedBullet = factoryMethod.Create();
-            Weapon weapon = new Pistol(10, 1, _instantiatedBullet);
+            Weapon weapon = new Pistol(_weaponConfig.Damage, _weaponConfig.Delay, _instantiatedBullet);
 
             _weaponController = new WeaponController(weapon);
         }
@@ -64,8 +67,11 @@ namespace Sources.Scripts.Runtime.CompositeRoots
             if (Raycaster<Detectable<IDamageable>>.Raycast(ray, out var detectable) == false)
                 return;
 
-            _instantiatedBullet.transform.localPosition = _position;
+            if (_weaponController.CanShoot() == false)
+                return;
             
+            _instantiatedBullet.transform.localPosition = _position;
+
             _instantiatedBullet.gameObject.SetActive(true);
             _weaponController.Shoot(detectable);
         }
